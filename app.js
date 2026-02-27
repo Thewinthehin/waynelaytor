@@ -1,39 +1,26 @@
 const gamesEl = document.getElementById("games");
 const searchEl = document.getElementById("search");
 const emptyEl = document.getElementById("empty");
-const playerEl = document.getElementById("game");
 
 let allGames = [];
-let loader = null;
 
-// EmulatorJS CDN (stable is recommended)
-const EJS_DATA = "https://cdn.emulatorjs.org/stable/data/";
-const LOADER_URL = `${EJS_DATA}loader.js`;
+function bootFromQuery() {
+  const params = new URLSearchParams(location.search);
+  const file = params.get("game");
+  const name = params.get("name");
 
-function clearPlayer() {
-  playerEl.innerHTML = "";
-}
+  if (!file) return;
 
-function removeLoader() {
-  if (loader) loader.remove();
-  loader = null;
-}
-
-function launchGBA(game) {
-  clearPlayer();
   emptyEl.style.display = "none";
 
-  // EmulatorJS config (must be set BEFORE loader.js runs)
+  // These must exist BEFORE loader.js runs (it already loaded),
+  // but EmulatorJS will read them when it initializes the player.
+  // To guarantee that, we set them and then refresh once with a special flag.
+  // Simpler: set them on first load via inline script (see note below).
   window.EJS_player = "#game";
   window.EJS_core = "gba";
-  window.EJS_gameName = game.name;
-  window.EJS_gameUrl = `roms/${encodeURIComponent(game.file)}`;
-  window.EJS_pathtodata = EJS_DATA;
-
-  removeLoader();
-  loader = document.createElement("script");
-  loader.src = LOADER_URL;
-  document.body.appendChild(loader);
+  window.EJS_gameUrl = `roms/${file}`;
+  window.EJS_gameName = name || file;
 }
 
 function render(list) {
@@ -48,7 +35,12 @@ function render(list) {
       </div>
       <div class="meta">Play</div>
     `;
-    row.onclick = () => launchGBA(g);
+    row.onclick = () => {
+      // Force a clean page load for each game
+      const url =
+        `?game=${encodeURIComponent(g.file)}&name=${encodeURIComponent(g.name)}`;
+      location.href = url;
+    };
     gamesEl.appendChild(row);
   });
 }
@@ -57,6 +49,12 @@ async function init() {
   const res = await fetch("games.json", { cache: "no-store" });
   allGames = await res.json();
   render(allGames);
+
+  // If URL has a game selected, show emulator
+  const params = new URLSearchParams(location.search);
+  if (params.get("game")) {
+    emptyEl.style.display = "none";
+  }
 }
 
 searchEl.addEventListener("input", (e) => {
@@ -67,4 +65,5 @@ searchEl.addEventListener("input", (e) => {
   ));
 });
 
+bootFromQuery();
 init();
