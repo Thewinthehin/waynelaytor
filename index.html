@@ -1,1 +1,30 @@
-index.html
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>GBA Emulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">GBA Library</div>
+    <input id="search" class="search" placeholder="Search…" />
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-title">Games</div>
+      <div id="games" class="games"></div>
+      <div class="hint">Saves: open emulator menu → Save/Load State.</div>
+    </aside>
+
+    <section class="player-wrap">
+      <div id="game" class="player"></div>
+      <div id="empty" class="empty">Select a game.</div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
