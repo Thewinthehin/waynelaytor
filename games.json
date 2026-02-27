@@ -1,4 +1,6 @@
 [
-  { "name": "Game 1", "file": "game1.gba" },
-  { "name": "Game 2", "file": "game2.gba" }
+  {
+    "name": "Pokémon Emerald",
+    "file": "Pokemon - Emerald Version (USA, Europe).gba"
+  }
 ]
