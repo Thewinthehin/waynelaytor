@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>GBA Emulator</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,57 +15,41 @@
 </header>
 
 <main class="layout">
-
-  <!-- GAME LIST -->
   <aside class="sidebar">
     <div class="sidebar-title">Games</div>
     <div id="games" class="games"></div>
-
-    <div class="hint">
-      Saves → Emulator Menu → Save/Load State
-    </div>
+    <div class="hint">Emulator Menu → Save / Load State</div>
   </aside>
 
-  <!-- EMULATOR SCREEN -->
   <section class="player-wrap">
     <div id="game" class="player"></div>
-    <div id="empty" class="empty">
-      Select a game to play
-    </div>
+    <div id="empty" class="empty">Select a game to play</div>
   </section>
-
 </main>
 
-
-<!-- ========================= -->
-<!-- EmulatorJS Configuration -->
-<!-- ========================= -->
 <script>
   const params = new URLSearchParams(window.location.search);
   const file = params.get("game");
   const name = params.get("name");
+
+  // IMPORTANT: start with threads OFF for troubleshooting
+  window.EJS_threads = false;
+
+  // Useful for debugging (you can turn this off later)
+  window.EJS_DEBUG_XX = true;
 
   if (file) {
     window.EJS_player = "#game";
     window.EJS_core = "gba";
     window.EJS_gameUrl = "roms/" + file;
     window.EJS_gameName = name || file;
+    window.EJS_startOnLoaded = true;
   }
 
-  window.EJS_pathtodata =
-    "https://cdn.emulatorjs.org/stable/data/";
+  window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
 </script>
 
-
-<!-- ========================= -->
-<!-- EmulatorJS Loader -->
-<!-- ========================= -->
 <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
-
-
-<!-- ========================= -->
-<!-- Your App Logic -->
-<!-- ========================= -->
 <script src="app.js"></script>
 
 </body>
