@@ -6,9 +6,7 @@
   --stroke:#223055;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
 
 body{
   margin:0;
@@ -17,44 +15,51 @@ body{
   color:var(--text);
 }
 
-/* ================= TOP BAR ================= */
-
+/* Top bar */
 .topbar{
+  position:sticky;
+  top:0;
   display:flex;
   align-items:center;
+  gap:12px;
   padding:12px 14px;
+  background:rgba(11,15,26,.85);
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--stroke);
+  z-index:10;
 }
 
-.brand{
-  font-weight:700;
-}
+.brand{ font-weight:700; }
 
 .search{
   margin-left:auto;
-  padding:8px 10px;
-  border-radius:8px;
+  width:min(520px,60vw);
+  padding:10px 12px;
+  border-radius:10px;
   border:1px solid var(--stroke);
   background:var(--panel);
   color:var(--text);
 }
 
-/* ================= LAYOUT ================= */
-
+/* Layout */
 .layout{
   display:grid;
   grid-template-columns:300px 1fr;
-  height:calc(100vh - 50px);
+  height:calc(100vh - 57px);
 }
 
 .sidebar{
   padding:12px;
   border-right:1px solid var(--stroke);
+  background:rgba(16,24,42,.55);
 }
 
 .sidebar-title{
-  margin-bottom:10px;
+  font-size:12px;
   color:var(--muted);
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
 }
 
 .games{
@@ -64,48 +69,66 @@ body{
 }
 
 .game{
-  padding:10px;
-  border-radius:8px;
+  padding:10px 12px;
+  border-radius:12px;
   border:1px solid var(--stroke);
+  background:rgba(16,24,42,.9);
   cursor:pointer;
 }
 
-.game:hover{
-  background:#182445;
+.game:hover{ filter:brightness(1.08); }
+
+.hint{
+  margin-top:12px;
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.35;
 }
 
-/* ================= PLAYER ================= */
-
+/* Player */
 .player-wrap{
   position:relative;
-  width:100%;
   height:100%;
+  padding:12px;
 }
 
 .player{
+  position:relative;          /* IMPORTANT */
   width:100%;
   height:100%;
-  background:black;
+  border-radius:14px;
   overflow:hidden;
+  border:1px solid var(--stroke);
+  background:#000;
 }
 
-/* ⭐⭐⭐ CRITICAL EMULATOR FIX ⭐⭐⭐ */
-/* Forces EmulatorJS video/canvas to display */
+/* ⭐ CRITICAL: force EmulatorJS injected element to fill the player */
+#game{
+  position:relative;          /* IMPORTANT */
+  width:100%;
+  height:100%;
+}
+
+#game > canvas,
+#game > iframe,
+#game > video,
 #game canvas,
 #game iframe,
 #game video{
+  position:absolute !important;
+  inset:0 !important;
   width:100% !important;
   height:100% !important;
   display:block !important;
 }
 
-/* ================= EMPTY TEXT ================= */
-
+/* Empty overlay */
 .empty{
   position:absolute;
-  inset:0;
+  inset:12px;
   display:grid;
   place-items:center;
   color:var(--muted);
   pointer-events:none;
+  z-index:5;
 }
