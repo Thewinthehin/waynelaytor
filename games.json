@@ -1,10 +1,9 @@
 [
   {
     "name": "Pokémon Emerald",
-    "file": "Pokemon - Emerald Version (USA, Europe).gba"
-  }
-]
-{
+    "file": "pokemon_emerald.gba"
+  },
+  {
     "name": "Pokémon Unbound",
     "file": "Pokemon Unbound (v2.1.1.1).gba"
   }
