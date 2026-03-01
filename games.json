@@ -9,5 +9,11 @@
     "name": "Pokémon Unbound",
     "file": "Pokemon Unbound.gba",
     "category": "Other"
+  },
+  {
+    "name": "Pokémon Silver Randomizer",
+    "file": "Pokemon Randomizer Silver 1.gbc",
+    "category": "Randomizer"
   }
+  
 ]
