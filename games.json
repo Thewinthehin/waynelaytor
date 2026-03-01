@@ -1,10 +1,17 @@
 [
   {
     "name": "Pokémon Emerald",
-    "file": "Pokemon - Emerald Version (USA, Europe).gba"
+    "file": "Pokemon - Emerald Version (USA, Europe).gba",
+    "category": "Other"
   },
   {
     "name": "Pokémon Unbound",
-    "file": "Pokemon Unbound.gba"
+    "file": "pokemon_unbound.gba",
+    "category": "Nuzlocks"
+  },
+  {
+    "name": "Emerald Randomizer Seed 1",
+    "file": "emerald_randomizer_1.gba",
+    "category": "Randomizers"
   }
 ]
