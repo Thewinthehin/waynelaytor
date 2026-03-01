@@ -1,10 +1,19 @@
 [
+  
   {
     "name": "Pokémon Emerald",
-    "file": "Pokemon - Emerald Version (USA, Europe).gba"
+    "file": "Pokemon - Emerald Version (USA, Europe).gba",
+    "category": "Other"
   },
   {
     "name": "Pokémon Unbound",
-    "file": "roms/Pokemon Unbound (v2.1.1.1).gba 2"
+    "file": "Pokemon Unbound.gba",
+    "category": "Other"
+  },
+  {
+    "name": "Pokémon Silver Randomizer",
+    "file": "Pokemon Randomized Silver 1.gbc",
+    "category": "Randomizers"
   }
+  
 ]
